@@ -1,13 +1,12 @@
 #include <inttypes.h>
 #include <stdio.h>
-#define SIZE 8
 
 void merge(int array[], int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
     int i, j, k;
 
-    int L[n1], R[n2];
+    int L[n1], R[n2];  // n1 + n2 = size
 
     for (i = 0; i < n1; i++) {
         L[i] = array[left + i];
@@ -34,24 +33,25 @@ void merge(int array[], int left, int mid, int right) {
     }
 }
 
-void quickSort(int array[], int left, int right) {
+void mergeSort(int array[], int left, int right) {
     if (left < right) {
-        int mid = right + (right - left) / 2;
-        quickSort(array, left, mid);
-        quickSort(array, mid + 1, right);
+        int mid = left + (right - left) / 2;
+        mergeSort(array, left, mid);
+        mergeSort(array, mid + 1, right);
         merge(array, left, mid, right);
     }
 }
 
 int main(int argc, char *argv[]) {
-    int array[SIZE] = {49, 38, 65, 97, 76, 13, 27, 49};
+    int array[] = {49, 38, 65, 97, 76, 13, 27, 49};
+    int size = sizeof(array) / sizeof(array[0]);
     int left = 0;
-    int right = SIZE - 1;
+    int right = size - 1;
     int i, j;
 
-    quickSort(array, left, right);
+    mergeSort(array, left, right);
 
-    for (i = 0; i < SIZE; i++) {
+    for (i = 0; i < size; i++) {
         printf("array[%d] = %d\n", i, array[i]);
     }
     return 0;
