@@ -1,4 +1,7 @@
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 int myAdd(int a, int b) {
     int c = b;
     return a + b;
